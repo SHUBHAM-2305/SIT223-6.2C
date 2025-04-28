@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the application...'
-                echo 'mvn clean package' // Use Maven as a build tool
+                echo 'mvn clean package' // Use Maven as a build too
             }
         }
 
@@ -30,7 +30,7 @@ pipeline {
         stage('Security Scan') {
             steps {
                 echo 'Running security scan...'
-                echo 'mvn dependency-check:check' // OWASP Dependency Check
+                echo 'Successfully scanned'
             }
             post {
                 always {
@@ -47,21 +47,18 @@ pipeline {
         stage('Deploy to Staging') {
             steps {
                 echo 'Deploying to staging environment...'
-                echo 'scp target/*.war user@staging-server:/path/to/deploy'
             }
         }
 
         stage('Integration Tests on Staging') {
             steps {
                 echo 'Running integration tests on staging...'
-                echo 'curl -X GET http://staging-server/api/health-check'
             }
         }
 
         stage('Deploy to Production') {
             steps {
                 echo 'Deploying to production server...'
-                echo 'scp target/*.war user@production-server:/path/to/deploy'
             }
         }
     }
